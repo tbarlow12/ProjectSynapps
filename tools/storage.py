@@ -1,21 +1,23 @@
 import uuid
+import csv
+from azure.storage.blob import BlockBlobService, PublicAccess
+        
+def save_dataset(dataset,id,container_name, account_name, account_key):
+    pass
 
-class Storage(object):
+def test_connection(account_name,account_key):
+    block_blob_service = BlockBlobService(account_name=account_name,account_key=account_key)
+    print(str(block_blob_service))
+    print('connected to blob')
 
     
+def save_file(file, id, container_name, account_name, account_key):
+    block_blob_service = BlockBlobService(account_name=account_name,account_key=account_key)
+    block_blob_service.set_container_acl(container_name,public_access=PublicAccess.Container)
 
-    def __init__(self,config):
-        self.account_name = config['ACCOUNT_NAME']
-        self.account_key = config['ACCOUNT_KEY']
 
-def add_new_dataset(request, cleaned, config):
-    id = str(uuid.uuid4())
-    if request.method == 'POST' and len(request.files) > 0:
-        file = request.files['file']
-        container_name = 'clean_datasets' if cleaned else 'unclean_datasets'
-        save_file(file,id,container_name)
-        
-        
-def save_file(file, id, container_name, config):
+def clean_dataset(self,file):
+    pass
 
-    
+def get_dataset(self,file):
+    pass
