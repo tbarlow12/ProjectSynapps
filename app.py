@@ -16,6 +16,8 @@ def index():
 @app.route('/train',methods=['POST'])
 def train():
     cleaned = True
+    content = request.get_json()
+    pdb.set_trace()
     account_name = app.config['ACCOUNT_NAME']
     account_key = app.config['ACCOUNT_KEY']
 
@@ -23,14 +25,8 @@ def train():
     if request.method == 'POST' and len(request.files) > 0:
         file = request.files['file']
         cleaned = True
-
         original_file_container = 'original_files_clean' if cleaned else 'original_files_unclean'
-        st.save_file(file,id,original_file_container,account_name,account_key)
-
-
-        
-
-
+        st.save_file(file, id, original_file_container, account_name,account_key)
 
 
 
