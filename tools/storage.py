@@ -13,7 +13,9 @@ def test_connection(account_name,account_key):
     
 def save_file(file, id, container_name, account_name, account_key):
     block_blob_service = BlockBlobService(account_name=account_name,account_key=account_key)
-    block_blob_service.set_container_acl(container_name,public_access=PublicAccess.Container)
+    block_blob_service.create_container(container_name)
+    #block_blob_service.set_container_acl(container_name,public_access=PublicAccess.Container)
+    block_blob_service.create_blob_from_stream(container_name,id + '.csv',file.stream)
 
 
 def clean_dataset(self,file):
